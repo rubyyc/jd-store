@@ -6,9 +6,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+  <div class="container-fluid">
+
+    <div class="row">
+      <%= render "common/navbar" %>
+    </div>
+    <%= render "common/flashes" %>
     <%= yield %>
+  </div>
+
+  <%= render "common/footer" %>
   </body>
+  <script src="/layer-v3.1.1/layer/layer.js"></script>
+  <script src="/layer-v3.1.1/layer/dialog.js"></script>
 </html>

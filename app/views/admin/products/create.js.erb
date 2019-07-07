@@ -1,0 +1,5 @@
+<% if @status == 'success' %>
+  dialog.success("商品添加成功!", "<%= admin_products_path %>" );
+<% else %>
+  dialog.error("商品添加失败!");
+<% end %>

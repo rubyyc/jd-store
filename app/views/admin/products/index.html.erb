@@ -1,0 +1,54 @@
+<div class="col-md-12">
+  <div class="group  margin-bottom-60">
+    <%= link_to("添加商品", new_admin_product_path, class: "btn btn-primary pull-right") %>
+  </div>
+
+  <h1 class="text-center">后台管理</h1>
+
+
+  <table class="table table-bordered table-hover table-striped text-center">
+
+    <thead>
+    <tr>
+      <td>商品名</td>
+      <td>图片</td>
+      <td>商品描述</td>
+      <td>商品价格</td>
+      <td>库存</td>
+      <td>创建时间</td>
+      <td colspan="4">操作</td>
+    </tr>
+    </thead>
+
+
+
+    <tbody>
+    <% @products.each do |product|  %>
+      <tr>
+        <td><%= link_to(product.title, admin_product_path(product)) %></td>
+        <td><%= link_to admin_product_path(product) do %>
+            <% if product.image.present? %>
+              <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+            <% else %>
+              <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+            <% end %>
+          <% end %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.quantity %></td>
+        <td><%= product.created_at%></td>
+        <td><%= link_to('编辑', edit_admin_product_path(product), class: 'btn btn-primary')  %></td>
+
+        <td><%= link_to('删除', admin_product_path(product),  class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?'} ) %></td>
+        <td>
+          <% if product.is_hidden %>
+            <%= link_to("上架", publish_admin_product_path(product),  :method => :post, :class => "btn btn-info") %>
+          <% else %>
+            <%= link_to("下架", hide_admin_product_path(product),  :method => :post, :class => "btn btn-info") %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
