@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products, only: [:index, :show]
+  resources :products do
+    member do
+      post :add_to_cart
+    end
+
+  end
 end
