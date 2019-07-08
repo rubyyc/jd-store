@@ -1,3 +1,14 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-list-item {
+  margin: 20px;
+  max-height: 400px;
+
+  border: #730E15 solid 2px;
+
+  .thumbnail {
+    margin: 10px auto;
+  }
+}

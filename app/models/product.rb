@@ -8,7 +8,11 @@ class Product < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  scope :published, -> { where(is_hidden: false) }
 
+  def is_hide?
+    self.is_hidden
+  end
 
   def publish!
     self.is_hidden = false
