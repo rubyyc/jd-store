@@ -9,4 +9,22 @@ class CartItemsController < ApplicationController
     flash[:warning] =  "成功将 #{@product.title} 从购物车删除"
     redirect_to :back
   end
+
+  def update
+    @cart = current_cart
+    @cart_item = @cart.cart_items.find_by(product_id: params[:id])
+
+    if @cart_item.product.quantity >= cart_item_params[:quantity].to_i
+      @cart_item.update(cart_item_params)
+      flash[:notice] = "成功变更数量"
+    else
+      flash[:warning] = "数量大于该商品库存,更改失败"
+    end
+
+    redirect_to carts_path
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:quantity)
+  end
 end
