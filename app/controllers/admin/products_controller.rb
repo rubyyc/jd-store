@@ -8,7 +8,7 @@ class Admin::ProductsController < ApplicationController
   layout "admin"
 
   def index
-    @products = Product.all
+    @products = Product.all.order('position ASC')
   end
 
   def new
@@ -75,6 +75,20 @@ class Admin::ProductsController < ApplicationController
     @product.publish!
 
     redirect_to admin_products_path, notice: '商品上架成功!'
+  end
+
+  def move_up
+    @product = Product.find(params[:id])
+    @product.move_higher
+
+    redirect_to admin_products_path, notice: '商品上移成功!'
+  end
+
+  def move_down
+    @product = Product.find(params[:id])
+    @product.move_lower
+
+    redirect_to admin_products_path, notice: '商品上移成功!'
 
   end
 

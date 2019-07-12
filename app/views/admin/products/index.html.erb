@@ -16,7 +16,7 @@
       <td>商品价格</td>
       <td>库存</td>
       <td>创建时间</td>
-      <td colspan="4">操作</td>
+      <td colspan="6">操作</td>
     </tr>
     </thead>
 
@@ -46,6 +46,12 @@
           <% else %>
             <%= link_to("下架", hide_admin_product_path(product),  :method => :post, :class => "btn btn-info") %>
           <% end %>
+        </td>
+        <td>
+          <%= link_to("上移", move_up_admin_product_path(product),  :method => :patch, :class => "btn btn-warning") %>
+        </td>
+        <td>
+          <%= link_to("下移", move_down_admin_product_path(product),  :method => :patch, :class => "btn btn-info") %>
         </td>
       </tr>
     <% end %>

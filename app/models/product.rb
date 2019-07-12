@@ -8,6 +8,8 @@ class Product < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  acts_as_list
+
   scope :published, -> { where(is_hidden: false) }
 
   def is_hide?
